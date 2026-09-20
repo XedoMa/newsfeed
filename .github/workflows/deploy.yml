@@ -1,0 +1,62 @@
+name: Build and deploy
+
+# Runs every 3 hours, whenever you push to main, and on manual trigger
+# (the "Run workflow" button in the Actions tab).
+on:
+  schedule:
+    - cron: '0 */3 * * *'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deployment at a time; new runs don't cancel an in-progress deploy.
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Article link/image lookups are cached so repeat runs only do work
+      # for genuinely new articles. This cache lives outside the folder
+      # we deploy, so it's never part of the public site.
+      - name: Restore article cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/news-cache
+          key: article-cache-${{ github.run_id }}
+          restore-keys: |
+            article-cache-
+
+      - name: Generate news.json
+        run: node fetch-feeds.js
+        env:
+          NEWS_CACHE_DIR: ${{ runner.temp }}/news-cache
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

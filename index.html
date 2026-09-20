@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XedoMa Digest</title>
+  <meta name="description" content="A visual news digest covering GCC politics, product management, and AI in consulting." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Sticky header: title, search box, topic filter chips -->
+  <header class="site-header">
+    <div class="site-header__top">
+      <h1 class="site-title">XedoMa Digest</h1>
+      <span class="last-updated" id="lastUpdated"></span>
+    </div>
+    <input
+      type="search"
+      id="searchInput"
+      class="search-box"
+      placeholder="Search headlines..."
+      aria-label="Search headlines"
+    />
+    <div class="chips" id="chips" role="tablist" aria-label="Filter by topic">
+      <!-- Filled in by app.js -->
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Featured (largest, most recent) article -->
+    <section id="featured" class="featured" hidden></section>
+
+    <!-- Grid of remaining article cards -->
+    <section id="grid" class="grid"></section>
+
+    <p id="emptyState" class="empty-state" hidden>No articles match your search/filter.</p>
+    <p id="loadingState" class="loading-state">Loading the latest news...</p>
+  </main>
+
+  <footer class="site-footer">
+    <p>Headlines link to their original publishers. Built with plain HTML, CSS &amp; JS.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "_comment": "Google News RSS search feeds. Each has a topic key matching TOPICS in index.html. when:7d limits results to the last week; exact phrases and OR groups keep queries tight.",
+  "feeds": [
+    {
+      "topic": "gcc-politics",
+      "label": "GCC politics",
+      "url": "https://news.google.com/rss/search?q=%22Gulf%20Cooperation%20Council%22%20OR%20GCC%20politics%20when:7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "topic": "gcc-politics",
+      "label": "GCC politics (country-level)",
+      "url": "https://news.google.com/rss/search?q=(Bahrain%20OR%20Kuwait%20OR%20Oman%20OR%20Qatar%20OR%20%22Saudi%20Arabia%22%20OR%20UAE)%20(politics%20OR%20government%20OR%20diplomacy)%20when:7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "topic": "product-management",
+      "label": "Product management",
+      "url": "https://news.google.com/rss/search?q=%22product%20management%22%20when:7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "topic": "ai-consulting",
+      "label": "AI in consulting",
+      "url": "https://news.google.com/rss/search?q=%22AI%20consulting%22%20when:7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "topic": "ai-consulting",
+      "label": "AI in consulting (GCC)",
+      "url": "https://news.google.com/rss/search?q=%22AI%20consulting%22%20(GCC%20OR%20Gulf%20OR%20%22Saudi%20Arabia%22%20OR%20UAE%20OR%20Qatar)%20when:7d&hl=en-US&gl=US&ceid=US:en"
+    }
+  ]
+}
